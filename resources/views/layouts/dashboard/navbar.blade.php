@@ -18,16 +18,18 @@
             </a>
         </li>
         <li class="nav-item nav-notif">
-            <a class="nav-link text-muted my-2" href="./#" data-toggle="modal" data-target=".modal-notif">
+            <a class="nav-link text-muted my-2" href="#" data-toggle="modal" data-target=".modal-notif">
                 <span class="fe fe-bell fe-16"></span>
-                <span class="dot dot-md bg-success"></span>
+                @if(($unreadNotificationsCount ?? 0) > 0)
+                    <span class="dot dot-md bg-success"></span>
+                @endif
             </a>
         </li>
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle text-muted pr-0" href="#" id="navbarDropdownMenuLink"
                 role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="avatar avatar-sm mt-2">
-                    <img src="./assets/avatars/face-1.jpg" alt="..." class="avatar-img rounded-circle">
+                    <img src="{{ auth()->user()->avatar ?? asset('dashboard/assets/avatars/default.png') }}" alt="..." class="avatar-img rounded-circle">
                 </span>
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">

@@ -16,7 +16,13 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
+            $table->string('phone')->nullable();
+            $table->timestamp('phone_verified_at')->nullable();
+            $table->string('username')->unique()->comment('Username for login can be used instead of email');
+            $table->enum('role', ['admin', 'user', 'tester'])->default('user');
+            $table->enum('status', ['active', 'inactive', 'blocked'])->default('active');
             $table->string('password');
+            $table->softDeletes();
             $table->rememberToken();
             $table->timestamps();
         });

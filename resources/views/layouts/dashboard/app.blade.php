@@ -1,32 +1,34 @@
 <!doctype html>
-<html lang="ar">
+<html lang="ar" dir="rtl">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="favicon.ico">
-    <title>Tiny Dashboard - A Bootstrap Dashboard Template</title>
+    <link rel="icon" href="{{ asset('dashboard/favicon.ico') }}">
+    <title>@yield('title', config('app.name'))</title>
     <!-- Simple bar CSS -->
-    <link rel="stylesheet" href="css/simplebar.css">
+    <link rel="stylesheet" href="{{ asset('dashboard/css/simplebar.css') }}">
     <!-- Fonts CSS -->
     <link
         href="https://fonts.googleapis.com/css2?family=Overpass:ital,wght@0,100;0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
     <!-- Icons CSS -->
-    <link rel="stylesheet" href="css/feather.css">
-    <link rel="stylesheet" href="css/select2.css">
-    <link rel="stylesheet" href="css/dropzone.css">
-    <link rel="stylesheet" href="css/uppy.min.css">
-    <link rel="stylesheet" href="css/jquery.steps.css">
-    <link rel="stylesheet" href="css/jquery.timepicker.css">
-    <link rel="stylesheet" href="css/quill.snow.css">
+    <link rel="stylesheet" href="{{ asset('dashboard/css/feather.css') }}">
+    <link rel="stylesheet" href="{{ asset('dashboard/css/select2.css') }}">
+    <link rel="stylesheet" href="{{ asset('dashboard/css/dropzone.css') }}">
+    <link rel="stylesheet" href="{{ asset('dashboard/css/uppy.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('dashboard/css/jquery.steps.css') }}">
+    <link rel="stylesheet" href="{{ asset('dashboard/css/jquery.timepicker.css') }}">
+    <link rel="stylesheet" href="{{ asset('dashboard/css/quill.snow.css') }}">
     <!-- Date Range Picker CSS -->
-    <link rel="stylesheet" href="css/daterangepicker.css">
+    <link rel="stylesheet" href="{{ asset('dashboard/css/daterangepicker.css') }}">
     <!-- App CSS -->
-    <link rel="stylesheet" href="css/app-light.css" id="lightTheme" disabled>
-    <link rel="stylesheet" href="css/app-dark.css" id="darkTheme">
+    <link rel="stylesheet" href="{{ asset('dashboard/css/app-light.css') }}" id="lightTheme" disabled>
+    <link rel="stylesheet" href="{{ asset('dashboard/css/app-dark.css') }}" id="darkTheme">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ asset('css/dashboard/custom.css') }}">
 
     @stack('styles')
 </head>
@@ -40,47 +42,44 @@
         <!-- main content -->
         <main role="main" class="main-content">
             @yield('content')
-
-            <!-- Notifications -->
-            @include('layouts.dashboard.modals.notifications')
-
-            <!-- Shortcuts -->
-            @include('layouts.dashboard.modals.shortcuts')
-
         </main> <!-- main -->
     </div> <!-- .wrapper -->
-    <script src="js/jquery.min.js"></script>
-    <script src="js/popper.min.js"></script>
-    <script src="js/moment.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/simplebar.min.js"></script>
-    <script src='js/daterangepicker.js'></script>
-    <script src='js/jquery.stickOnScroll.js'></script>
-    <script src="js/tinycolor-min.js"></script>
-    <script src="js/config.js"></script>
-    <script src="js/d3.min.js"></script>
-    <script src="js/topojson.min.js"></script>
-    <script src="js/datamaps.all.min.js"></script>
-    <script src="js/datamaps-zoomto.js"></script>
-    <script src="js/datamaps.custom.js"></script>
-    <script src="js/Chart.min.js"></script>
+
+    <!-- Modals خارج الجدول والمحتوى لتفادي القص والتداخل -->
+    @include('layouts.dashboard.modals.notifications')
+    @include('layouts.dashboard.modals.shortcuts')
+    <script src="{{ asset('dashboard/js/jquery.min.js') }}"></script>
+    <script src="{{ asset('dashboard/js/popper.min.js') }}"></script>
+    <script src="{{ asset('dashboard/js/moment.min.js') }}"></script>
+    <script src="{{ asset('dashboard/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('dashboard/js/simplebar.min.js') }}"></script>
+    <script src="{{ asset('dashboard/js/daterangepicker.js') }}"></script>
+    <script src="{{ asset('dashboard/js/jquery.stickOnScroll.js') }}"></script>
+    <script src="{{ asset('dashboard/js/tinycolor-min.js') }}"></script>
+    <script src="{{ asset('dashboard/js/config.js') }}"></script>
+    <script src="{{ asset('dashboard/js/d3.min.js') }}"></script>
+    <script src="{{ asset('dashboard/js/topojson.min.js') }}"></script>
+    <script src="{{ asset('dashboard/js/datamaps.all.min.js') }}"></script>
+    <script src="{{ asset('dashboard/js/datamaps-zoomto.js') }}"></script>
+    <script src="{{ asset('dashboard/js/datamaps.custom.js') }}"></script>
+    <script src="{{ asset('dashboard/js/Chart.min.js') }}"></script>
     <script>
         /* defind global options */
         Chart.defaults.global.defaultFontFamily = base.defaultFontFamily;
         Chart.defaults.global.defaultFontColor = colors.mutedColor;
     </script>
-    <script src="js/gauge.min.js"></script>
-    <script src="js/jquery.sparkline.min.js"></script>
-    <script src="js/apexcharts.min.js"></script>
-    <script src="js/apexcharts.custom.js"></script>
-    <script src='js/jquery.mask.min.js'></script>
-    <script src='js/select2.min.js'></script>
-    <script src='js/jquery.steps.min.js'></script>
-    <script src='js/jquery.validate.min.js'></script>
-    <script src='js/jquery.timepicker.js'></script>
-    <script src='js/dropzone.min.js'></script>
-    <script src='js/uppy.min.js'></script>
-    <script src='js/quill.min.js'></script>
+    <script src="{{ asset('dashboard/js/gauge.min.js') }}"></script>
+    <script src="{{ asset('dashboard/js/jquery.sparkline.min.js') }}"></script>
+    <script src="{{ asset('dashboard/js/apexcharts.min.js') }}"></script>
+    <script src="{{ asset('dashboard/js/apexcharts.custom.js') }}"></script>
+    <script src="{{ asset('dashboard/js/jquery.mask.min.js') }}"></script>
+    <script src="{{ asset('dashboard/js/select2.min.js') }}"></script>
+    <script src="{{ asset('dashboard/js/jquery.steps.min.js') }}"></script>
+    <script src="{{ asset('dashboard/js/jquery.validate.min.js') }}"></script>
+    <script src="{{ asset('dashboard/js/jquery.timepicker.js') }}"></script>
+    <script src="{{ asset('dashboard/js/dropzone.min.js') }}"></script>
+    <script src="{{ asset('dashboard/js/uppy.min.js') }}"></script>
+    <script src="{{ asset('dashboard/js/quill.min.js') }}"></script>
     <script>
         $('.select2').select2({
             theme: 'bootstrap4',
@@ -252,7 +251,10 @@
             });
         }
     </script>
-    <script src="js/apps.js"></script>
+    <script src="{{ asset('dashboard/js/apps.js') }}"></script>
+    <!-- Custom JS -->
+    <script src="{{ asset('js/dashboard/custom.js') }}"></script>
+    @stack('scripts')
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-56159088-1"></script>
     <script>

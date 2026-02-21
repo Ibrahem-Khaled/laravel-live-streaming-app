@@ -2,66 +2,50 @@
     <div class="modal-dialog modal-sm" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="defaultModalLabel">Notifications</h5>
+                <h5 class="modal-title" id="defaultModalLabel">الإشعارات</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
                 <div class="list-group list-group-flush my-n3">
-                    <div class="list-group-item bg-transparent">
-                        <div class="row align-items-center">
-                            <div class="col-auto">
-                                <span class="fe fe-box fe-24"></span>
+                    @forelse($headerNotifications ?? [] as $notification)
+                        @php
+                            $data = $notification->data ?? [];
+                            $title = $data['title'] ?? 'إشعار';
+                            $body = $data['body'] ?? '';
+                            $url = $data['url'] ?? null;
+                        @endphp
+                        <a href="{{ $url ?: '#' }}" class="list-group-item list-group-item-action bg-transparent {{ $url ? '' : 'disabled' }}" @if($url) target="_blank" @endif>
+                            <div class="row align-items-center">
+                                <div class="col-auto">
+                                    <span class="fe fe-bell fe-24"></span>
+                                </div>
+                                <div class="col">
+                                    <small><strong>{{ $title }}</strong></small>
+                                    @if($body)
+                                        <div class="my-0 text-muted small">{{ Str::limit($body, 60) }}</div>
+                                    @endif
+                                    <small class="badge badge-pill badge-light text-muted">{{ $notification->created_at->diffForHumans() }}</small>
+                                </div>
                             </div>
-                            <div class="col">
-                                <small><strong>Package has uploaded successfull</strong></small>
-                                <div class="my-0 text-muted small">Package is zipped and uploaded</div>
-                                <small class="badge badge-pill badge-light text-muted">1m ago</small>
-                            </div>
+                        </a>
+                    @empty
+                        <div class="list-group-item bg-transparent text-center text-muted py-4">
+                            <span class="fe fe-inbox fe-32 d-block mb-2"></span>
+                            لا توجد إشعارات جديدة
                         </div>
-                    </div>
-                    <div class="list-group-item bg-transparent">
-                        <div class="row align-items-center">
-                            <div class="col-auto">
-                                <span class="fe fe-download fe-24"></span>
-                            </div>
-                            <div class="col">
-                                <small><strong>Widgets are updated successfull</strong></small>
-                                <div class="my-0 text-muted small">Just create new layout Index, form, table</div>
-                                <small class="badge badge-pill badge-light text-muted">2m ago</small>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="list-group-item bg-transparent">
-                        <div class="row align-items-center">
-                            <div class="col-auto">
-                                <span class="fe fe-inbox fe-24"></span>
-                            </div>
-                            <div class="col">
-                                <small><strong>Notifications have been sent</strong></small>
-                                <div class="my-0 text-muted small">Fusce dapibus, tellus ac cursus commodo</div>
-                                <small class="badge badge-pill badge-light text-muted">30m ago</small>
-                            </div>
-                        </div> <!-- / .row -->
-                    </div>
-                    <div class="list-group-item bg-transparent">
-                        <div class="row align-items-center">
-                            <div class="col-auto">
-                                <span class="fe fe-link fe-24"></span>
-                            </div>
-                            <div class="col">
-                                <small><strong>Link was attached to menu</strong></small>
-                                <div class="my-0 text-muted small">New layout has been attached to the menu</div>
-                                <small class="badge badge-pill badge-light text-muted">1h ago</small>
-                            </div>
-                        </div>
-                    </div> <!-- / .row -->
-                </div> <!-- / .list-group -->
+                    @endforelse
+                </div>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary btn-block" data-dismiss="modal">Clear All</button>
-            </div>
+            @if(($unreadNotificationsCount ?? 0) > 0)
+                <div class="modal-footer">
+                    <form method="post" action="{{ route('notifications.markAllRead') }}" class="w-100">
+                        @csrf
+                        <button type="submit" class="btn btn-secondary btn-block">تعليم الكل كمقروء</button>
+                    </form>
+                </div>
+            @endif
         </div>
     </div>
 </div>
