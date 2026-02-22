@@ -9,6 +9,27 @@
         href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;700;900&family=Cairo:wght@300;400;700;900&display=swap"
         rel="stylesheet" />
     <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- meta data and app icon and desc and seo -->
+    <meta name="description" content="البصيرة — منصتك المتكاملة لاستكشاف عالم السينما، الأفلام، والمسلسلات بأحدث التقنيات والمراجعات." />
+    <meta name="keywords" content="سينما, أفلام, مسلسلات, مراجعات, البصيرة, ترفيه" />
+    <link rel="icon" type="image/png" href="{{ asset('dashboard/assets/images/logo.png') }}" />
+    <link rel="apple-touch-icon" href="{{ asset('dashboard/assets/images/logo.png') }}" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="{{ url()->current() }}" />
+    <meta property="og:title" content="البصيرة — عالمك السينمائي" />
+    <meta property="og:description" content="البصيرة — منصتك المتكاملة لاستكشاف عالم السينما، الأفلام، والمسلسلات بأحدث التقنيات والمراجعات." />
+    <meta property="og:image" content="{{ asset('dashboard/assets/images/logo.png') }}" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="{{ url()->current() }}" />
+    <meta name="twitter:title" content="البصيرة — عالمك السينمائي" />
+    <meta name="twitter:description" content="البصيرة — منصتك المتكاملة لاستكشاف عالم السينما، الأفلام، والمسلسلات بأحدث التقنيات والمراجعات." />
+    <meta name="twitter:image" content="{{ asset('dashboard/assets/images/logo.png') }}" />
+
     <style>
         :root {
             --gold: #c9a84c;
@@ -518,34 +539,7 @@
     <div class="cursor-trail" id="cursorTrail"></div>
 
     <!-- ===== NAVBAR ===== -->
-    <nav class="py-4 px-6">
-        <div class="max-w-7xl mx-auto flex items-center justify-between">
-            <div class="flex items-center gap-3">
-                <div class="logo-eye"></div>
-                <span class="text-xl font-bold gold-text" style="font-family:'Cairo',sans-serif;">البصيرة</span>
-            </div>
-            <div class="hidden md:flex items-center gap-8 text-sm" style="color: var(--text-dim);">
-                <a href="#" class="animated-link hover:text-white transition-colors">الرئيسية</a>
-                <a href="#" class="animated-link hover:text-white transition-colors">أفلام</a>
-                <a href="#" class="animated-link hover:text-white transition-colors">مسلسلات</a>
-                <a href="#" class="animated-link hover:text-white transition-colors">وثائقيات</a>
-                <a href="#" class="animated-link hover:text-white transition-colors">أنيمي</a>
-            </div>
-            <div class="flex items-center gap-3">
-                @if (!auth()->check())
-                <a href="{{ route('login') }}" class="text-sm px-5 py-2 rounded-full border"
-                    style="border-color:rgba(201,168,76,0.3); color:var(--gold-light);">تسجيل الدخول</a>
-                <a href="{{ route('register') }}" class="text-sm px-5 py-2 rounded-full font-bold"
-                    style="background:var(--gold); color:var(--deep);">ابدأ مجاناً</a>
-                @else
-                <a href="{{ route('dashboard') }}" class="text-sm px-5 py-2 rounded-full font-bold"
-                    style="background:var(--gold); color:var(--deep);">لوحة التحكم</a>
-                @endif
-
-
-            </div>
-        </div>
-    </nav>
+    @include('layouts.web.nav-bar')
 
     <!-- ===== HERO ===== -->
     <section class="hero-bg relative min-h-screen flex items-center pt-20 overflow-hidden">
@@ -1241,58 +1235,7 @@
     </section>
 
     <!-- ===== FOOTER ===== -->
-    <footer class="py-16 px-6">
-        <div class="max-w-7xl mx-auto">
-            <div class="grid md:grid-cols-4 gap-10 mb-12">
-                <div>
-                    <div class="flex items-center gap-3 mb-4">
-                        <div class="logo-eye" style="width:28px;height:28px;"></div>
-                        <span class="text-xl font-bold gold-text"
-                            style="font-family:'Cairo',sans-serif;">البصيرة</span>
-                    </div>
-                    <p class="text-sm" style="color:var(--text-dim);">عالمك السينمائي في مكان واحد. نؤمن بأن كل قصة
-                        تستحق أن تُرى.</p>
-                </div>
-                <div>
-                    <h4 class="font-bold mb-4" style="color:var(--gold-light);">المحتوى</h4>
-                    <ul class="space-y-2 text-sm" style="color:var(--text-dim);">
-                        <li><a href="#" class="hover:text-white transition-colors">أفلام</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">مسلسلات</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">وثائقيات</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">أنيمي</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="font-bold mb-4" style="color:var(--gold-light);">الشركة</h4>
-                    <ul class="space-y-2 text-sm" style="color:var(--text-dim);">
-                        <li><a href="#" class="hover:text-white transition-colors">من نحن</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">وظائف</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">المدونة</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">الصحافة</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="font-bold mb-4" style="color:var(--gold-light);">الدعم</h4>
-                    <ul class="space-y-2 text-sm" style="color:var(--text-dim);">
-                        <li><a href="#" class="hover:text-white transition-colors">مركز المساعدة</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">الخصوصية</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">الشروط</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">تواصل معنا</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="gold-line mb-8"></div>
-            <div class="flex items-center justify-between flex-wrap gap-4">
-                <p class="text-sm" style="color:var(--text-dim);">© 2025 البصيرة. جميع الحقوق محفوظة.</p>
-                <div class="flex gap-4 text-sm" style="color:var(--text-dim);">
-                    <a href="#" class="hover:text-white transition-colors">Twitter/X</a>
-                    <a href="#" class="hover:text-white transition-colors">Instagram</a>
-                    <a href="#" class="hover:text-white transition-colors">TikTok</a>
-                    <a href="#" class="hover:text-white transition-colors">YouTube</a>
-                </div>
-            </div>
-        </div>
-    </footer>
+  @include('layouts.web.footer')
 
     <script>
         // Custom Cursor - Fixed
