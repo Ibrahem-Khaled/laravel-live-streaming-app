@@ -4,10 +4,11 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="{{ asset('dashboard/favicon.ico') }}">
-    <title>@yield('title', config('app.name'))</title>
+    <meta name="description" content="{{ setting('meta_description') }}">
+    <meta name="keywords" content="{{ setting('meta_keywords') }}">
+    <meta name="author" content="{{ setting('site_name', config('app.name')) }}">
+    <link rel="icon" href="{{ setting('site_favicon', asset('dashboard/favicon.ico')) }}">
+    <title>@yield('title') | {{ setting('site_name', config('app.name')) }}</title>
     <!-- Simple bar CSS -->
     <link rel="stylesheet" href="{{ asset('dashboard/css/simplebar.css') }}">
     <!-- Fonts CSS -->
@@ -31,6 +32,8 @@
     <link rel="stylesheet" href="{{ asset('css/dashboard/custom.css') }}">
 
     @stack('styles')
+
+    {!! setting('header_scripts') !!}
 </head>
 
 <body class="vertical  dark rtl ">
@@ -268,6 +271,8 @@
     </script>
 
     @stack('scripts')
+
+    {!! setting('footer_scripts') !!}
 </body>
 
 </html>

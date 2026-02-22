@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\EpisodeController;
 use App\Http\Controllers\Admin\homeController;
 use App\Http\Controllers\Admin\NotificationController as AdminNotificationController;
 use App\Http\Controllers\Admin\SliderController;
+use App\Http\Controllers\Admin\SettingsController;
 use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -73,6 +74,11 @@ Route::middleware(['auth', 'verified', 'admin'])->prefix('dashboard')->name('das
     Route::get('notifications/broadcasts/{broadcast}/edit', [AdminNotificationController::class, 'edit'])->name('notifications.broadcasts.edit');
     Route::put('notifications/broadcasts/{broadcast}', [AdminNotificationController::class, 'update'])->name('notifications.broadcasts.update');
     Route::delete('notifications/broadcasts/{broadcast}', [AdminNotificationController::class, 'destroy'])->name('notifications.broadcasts.destroy');
+
+    // Settings
+    Route::get('settings', [SettingsController::class, 'index'])->name('settings.index');
+    Route::post('settings/update', [SettingsController::class, 'update'])->name('settings.update');
+    Route::post('settings/clear-cache', [SettingsController::class, 'clearCache'])->name('settings.clear-cache');
 
     // Dashboard API (AJAX) — للاستخدام في Select2 وغيرها
     Route::get('api/users/search', [DashboardApiController::class, 'usersSearch'])->name('api.users.search');

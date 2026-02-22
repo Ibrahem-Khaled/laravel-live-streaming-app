@@ -6,7 +6,7 @@
         <!-- nav bar -->
         <div class="w-100 mb-4 d-flex">
             <a class="navbar-brand mx-auto mt-2 flex-fill text-center" href="{{ route('dashboard') }}">
-                <h2>Dashboard</h2>
+                <h2 class="h5">لوحة التحكم</h2>
             </a>
         </div>
 
@@ -131,6 +131,18 @@
                 </a>
             </li>
         </ul> --}}
+
+        <p class="text-muted nav-heading mt-4 mb-1">
+            <span>النظام</span>
+        </p>
+        <ul class="navbar-nav flex-fill w-100 mb-2">
+            <li class="nav-item w-100 {{ request()->routeIs('dashboard.settings.*') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('dashboard.settings.index') }}">
+                    <i class="fe fe-settings fe-16"></i>
+                    <span class="ml-3 item-text">الإعدادات</span>
+                </a>
+            </li>
+        </ul>
 
     </nav>
 </aside>
